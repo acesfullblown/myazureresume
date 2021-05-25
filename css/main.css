@@ -3,20 +3,21 @@ html {
 }
 
 .header {
-    text-align: center;
-    height: 150px;
-    background-position: bottom;
+    text-align: left;
+    height: 160px;
+    /*background-position: bottom;
     background-image: url("../images/clouds_header.png");
     background-repeat: repeat-x;
     background-size: 600px 100px;
-    background-position-x: 300px;                 
+    background-position-x: 300px;      */           
 }
 
 body {
     margin: 0;
     background-color: #3275A8;
+    font-size: 11px;
     background-image: url("../images/sky.jpg");
-    background-repeat: no-repeat;
+    background-repeat: no-repeat center center fixed;
     background-size: cover;
   }
   
@@ -62,10 +63,10 @@ h3 {
     height: 120px;
     display: flex;
     text-align: center;
-    background-position: top;
+    /*background-position: top;
     background-image: url("../images/clouds_footer.png");
     background-repeat: repeat-x;
-    background-size: 600px 100px;
+    background-size: 600px 100px;*/
 }
 
 table, td {
