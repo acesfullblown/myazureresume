@@ -5,44 +5,35 @@ html {
 .header {
     height: 150px; 
     display: flex;
+    width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
     justify-content: space-between;
-    align-items: flex-end;   
+    align-items: flex-end; 
+    background-color: #97cef8;
 }
 
 body {
     margin: 0;
-    background-color: #97cef8;
+    margin-top: 150px;
     font-size: 11px;
-  }
+}
   
 h1 {
     color: black;
     text-align: center;
-  }
+}
 
 h3 {
     color: black;
     text-align: center;
-  }
-
-.container {
-    display: flex;
-    max-width: 100%;
-    margin: 0 auto;
-    background-color: #FFFFFF;
-}
-
-.resume_cat {
-    float: left;
-    text-align: left;
-    width: 30%;
-    background-color: #FFFFFF;
 }
 
 .resume_body {
     text-align: left;
-    flex: 1;
     background-color: #FFFFFF;
+    max-width: 100%;
 }
 
 .center {
@@ -57,6 +48,7 @@ h3 {
     height: 120px;
     display: flex;
     text-align: center;
+    background-color: #97cef8;
 }
 
 table, td {
