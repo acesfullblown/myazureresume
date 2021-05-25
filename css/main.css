@@ -16,8 +16,8 @@ html {
 
 body {
     margin: 0;
-    margin-top: 150px;
-    font-size: 11px;
+    margin-top: 160px;
+    font-size: 10px;
 }
   
 h1 {
@@ -30,10 +30,16 @@ h3 {
     text-align: center;
 }
 
-.resume_body {
-    text-align: left;
+.resume_container {
     background-color: #FFFFFF;
-    max-width: 100%;
+    width: 100%;
+}
+
+.resume_body {
+    text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .center {
