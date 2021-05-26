@@ -19,7 +19,7 @@ html {
 
 .quote {
     font-style: italic;
-    font-size: medium;
+    font-size: 110%;
 }
 
 body {
@@ -68,14 +68,6 @@ h1, h3, h4 {
     display: flex;
     text-align: center;
 }
-
-/*
-table, td {
-    vertical-align: top;
-    padding: 5px;
-    border-spacing: 5px;
-    border-collapse: separate;
-}*/
 
 a:link {
     color: black;
