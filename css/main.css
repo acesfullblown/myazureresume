@@ -11,13 +11,14 @@ html {
     top: 0;
     justify-content: space-between;
     align-items: flex-end; 
-    background-color: #97cef8;
+    background-image: linear-gradient(to right, rgb(223, 229, 241) , rgb(132, 180, 219));
 }
 
 body {
     margin: 0;
     margin-top: 160px;
-    font-size: 10px;
+    font-size: small;
+    background-color: #FFFFFF;
 }
   
 h1 {
@@ -54,7 +55,7 @@ h3 {
     height: 120px;
     display: flex;
     text-align: center;
-    background-color: #97cef8;
+    background-image: linear-gradient(to right, rgb(223, 229, 241) , rgb(132, 180, 219));
 }
 
 table, td {
@@ -63,3 +64,15 @@ table, td {
     border-spacing: 5px;
     border-collapse: separate;
 }
+
+a:link {
+    color: black;
+  }
+
+a:visited {
+    color: black;
+  }
+
+  a:hover {
+    color: gray;
+  }
