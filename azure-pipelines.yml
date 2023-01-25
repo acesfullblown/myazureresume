@@ -21,7 +21,7 @@ stages:
   jobs:
   - job: BuildJob
     pool:
-      vmImage: $(vmImageName)
+      name: local
     steps:
     - script: |
         sudo update-alternatives --set php /usr/bin/php$(phpVersion)
