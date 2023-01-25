@@ -6,8 +6,6 @@ variables:
   azureSubscription: 'Azure'
   # Web app name
   webAppName: 'south001'
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
   # Environment name
   environmentName: 'prod'
   # Root folder under which your composer.json file is available.
@@ -57,7 +55,7 @@ stages:
   jobs:
   - deployment: DeploymentJob
     pool:
-      vmImage: $(vmImageName)
+      name: local
     environment: $(environmentName)
     strategy:
       runOnce:
