@@ -3,7 +3,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '168ac06c-4d47-458d-aae1-befb0d1190bb'
+  azureSubscription: 'Azure'
   # Web app name
   webAppName: 'south001'
   # Agent VM image name
