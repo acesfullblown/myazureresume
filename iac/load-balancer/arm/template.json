@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vNet": {
+            "type": "object"
+            }
+        },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2023-11-01",
+            "name": "[parameters('vNet').name]",
+            "location": "",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": "[parameters('vNet').addressPrefixes]"
+                }
+            }
+        }
+    ]
+}
