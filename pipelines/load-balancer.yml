@@ -2,4 +2,15 @@ trigger:
 - main
 
 pool:
-- vmImage: 'windows-latest'
+- vmImage: windows-latest
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Subscription'
+    azureResourceManagerConnection: 'Mentorship(df95927c-f1ac-4464-84ac-f8982407cd53)'
+    subscriptionId: 'df95927c-f1ac-4464-84ac-f8982407cd53'
+    location: 'East US'
+    templateLocation: 'Linked artifact'
+    csmFile: '/azure/iac/load-balancer/template.json'
+    csmParametersFile: '/azure/iac/load-balancer/parameters.json'
+    deploymentMode: 'Incremental'
