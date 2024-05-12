@@ -4,6 +4,7 @@ trigger:
 pool:
  vmImage: windows-latest
 
+steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Subscription'
