@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-- vmImage: windows-latest
+ vmImage: windows-latest
 
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
