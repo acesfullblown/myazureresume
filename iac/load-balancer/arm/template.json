@@ -12,7 +12,7 @@
     "resources": [
     // Resource Group
         {
-            "type": "Microsoft.Resources.resourceGroups",
+            "type": "Microsoft.Resources/resourceGroups",
             "apiVersion": "2024-03-01",
             "name": "[parameters('resourceGroupName')]"
         },
