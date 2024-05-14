@@ -13,6 +13,6 @@ steps:
     subscriptionId: 'df95927c-f1ac-4464-84ac-f8982407cd53'
     location: 'East US'
     templateLocation: 'Linked artifact'
-    csmFile: 'iac/load-balancer/template.json'
-    csmParametersFile: 'iac/load-balancer/parameters.json'
+    csmFile: 'azure/iac/load-balancer/template.json'
+    csmParametersFile: 'azure/iac/load-balancer/parameters.json'
     deploymentMode: 'Incremental'
