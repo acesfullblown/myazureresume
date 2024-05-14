@@ -8,10 +8,11 @@ steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Subscription'
+    action: 'Create Or Update Resource Group'
     azureResourceManagerConnection: 'Mentorship(df95927c-f1ac-4464-84ac-f8982407cd53)'
     subscriptionId: 'df95927c-f1ac-4464-84ac-f8982407cd53'
     location: 'East US'
-    templateLocation: 'URL of the file'
-    csmFileLink: 'iac/load-balancer/template.json'
-    csmParametersFileLink: 'iac/load-balancer/parameters.json'
+    templateLocation: 'Linked artifact'
+    csmFile: 'iac/load-balancer/template.json'
+    csmParametersFile: 'iac/load-balancer/parameters.json'
     deploymentMode: 'Incremental'
