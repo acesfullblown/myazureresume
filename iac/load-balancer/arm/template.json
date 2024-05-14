@@ -15,7 +15,9 @@
             "location": "East US",
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": "[parameters('vNet').addressPrefixes]"
+                    "addressPrefixes": [
+                        "[parameters('vNet').addressPrefixes]"
+                    ]
                 }
             }
         }
