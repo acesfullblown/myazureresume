@@ -5,7 +5,9 @@
         "vNet": {
             "value": {
                 "name": "vnet-dev-eastus-001",
-                "addressPrefixes": "10.0.0.0/24"
+                "addressSpace": {
+                    "addressPrefixes": "10.0.0.0/24"
+                }
             }            
         }
     }
