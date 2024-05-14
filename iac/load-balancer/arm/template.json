@@ -22,7 +22,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2023-11-01",
             "name": "[parameters('vNet').name]",
-            "location": "",
+            "location": "East US",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": "[parameters('vNet').addressPrefixes]"
