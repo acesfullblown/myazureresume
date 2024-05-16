@@ -5,7 +5,7 @@ parameters:
 - name: language
   displayName: Language
   type: string
-  default: Bicep
+  default: ARM
   values: 
   - Bicep
   - ARM
