@@ -18,7 +18,15 @@
                     "addressPrefixes": [
                         "[parameters('vNet').addressPrefixes]"
                     ]
-                }
+                },
+                "subnets": [ 
+                    {
+                        "name": "default",
+                        "properties": {
+                            "addressPrefix": "[parameters('vNet').addressPrefixes]"
+                        }
+                    }
+                ]
             }
         }
     ]
