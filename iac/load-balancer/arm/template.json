@@ -51,7 +51,7 @@
                     "name": "ipconfig1",
                     "properties": {
                           "subnet": {
-                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name), 'default')]"
+                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
                           },
                           "privateIPAllocationMethod": "Dynamic"
                         }
