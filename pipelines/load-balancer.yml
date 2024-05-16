@@ -1,19 +1,29 @@
 trigger:
 - main
 
+parameters:
+- name: language
+  displayName: Language
+  type: string
+  default: Bicep
+  values: 
+  - Bicep
+  - ARM
+
 pool:
  vmImage: windows-latest
 
 steps:
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    action: 'Create Or Update Resource Group'
-    azureResourceManagerConnection: 'Mentorship(df95927c-f1ac-4464-84ac-f8982407cd53)'
-    subscriptionId: 'df95927c-f1ac-4464-84ac-f8982407cd53'
-    resourceGroupName: 'rg-loadbalancer-dev-001'
-    location: 'East US'
-    templateLocation: 'Linked artifact'
-    csmFile: 'iac/load-balancer/arm/template.json'
-    csmParametersFile: 'iac/load-balancer/arm/parameters.json'
-    deploymentMode: 'Incremental'
+- ${{ if eq(parameters.environment, 'ARM') }}:
+  - task: AzureResourceManagerTemplateDeployment@3
+    inputs:
+      deploymentScope: 'Resource Group'
+      action: 'Create Or Update Resource Group'
+      azureResourceManagerConnection: 'Mentorship(df95927c-f1ac-4464-84ac-f8982407cd53)'
+      subscriptionId: 'df95927c-f1ac-4464-84ac-f8982407cd53'
+      resourceGroupName: 'rg-loadbalancer-dev-001'
+      location: 'East US'
+      templateLocation: 'Linked artifact'
+      csmFile: 'iac/load-balancer/arm/template.json'
+      csmParametersFile: 'iac/load-balancer/arm/parameters.json'
+      deploymentMode: 'Incremental'
