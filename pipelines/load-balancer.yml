@@ -14,7 +14,7 @@ pool:
  vmImage: windows-latest
 
 steps:
-- ${{ if eq(parameters.environment, 'ARM') }}:
+- ${{ if eq(parameters.language, 'ARM') }}:
   - task: AzureResourceManagerTemplateDeployment@3
     inputs:
       deploymentScope: 'Resource Group'
