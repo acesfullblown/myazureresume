@@ -4,6 +4,12 @@
     "parameters": {
         "vNet": {
             "type": "object"
+            },
+        "VM1": {
+            "type": "object"
+            },
+        "VM2": {
+            "type": "object"
             }
         },
     "resources": [
@@ -27,6 +33,64 @@
                         }
                     }
                 ]
+            }
+        },
+    // Virtual Machines
+        {
+        // VM 1
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2017-06-01",
+            "name": "[concat('nic-', parameters('VM1').name)]",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
+                ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                    "name": "ipconfig1",
+                    "properties": {
+                          "subnet": {
+                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name), 'default')]"
+                          },
+                          "privateIPAllocationMethod": "Dynamic"
+                        }
+                      }
+                    ]
+                }
+            },
+            {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2022-03-01",
+            "name": "[parameters('VM1').name]",
+            "location": "East US",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('VM1').size]"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('VM1').name]",
+                    "adminUsername": "[parameters('VM1').adminUsername]",
+                    "adminPassword": "[parameters('VM1').adminPassword]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                      "publisher": "MicrosoftWindowsServer",
+                      "offer": "WindowsServer",
+                      "sku": "2019-Datacenter",
+                      "version": "latest"
+                    }
+                },
+                "osDisk": {
+                    "createOption": "FromImage"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                      {
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('VM1').name))]"
+                      }
+                    ]
+                }
             }
         }
     ]
