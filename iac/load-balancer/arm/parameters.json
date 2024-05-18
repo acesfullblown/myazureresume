@@ -13,6 +13,7 @@
                 "name": "vm-dev-eastus-001",
                 "size": "Standard_B2s",
                 "computerName": "vm1",
+                "osDiskName": "dsk-vm-dev-eastus-001",
                 "adminUsername": "LBadmin",
                 "adminPassword": "https://kv-loadbalancer-dev-001.vault.azure.net/secrets/vm1-password/8394dfeda4eb46eb91468ee34612a148"
             }            
@@ -22,6 +23,7 @@
                 "name": "vm-dev-eastus-002",
                 "size": "Standard_B2s",
                 "computerName": "vm2",
+                "osDiskName": "dsk-vm-dev-eastus-002",
                 "adminUsername": "LBadmin",
                 "adminPassword": "https://kv-loadbalancer-dev-001.vault.azure.net/secrets/vm2-password/b03175a2cf2c432ea0ddce40e6fef4c2"
             }

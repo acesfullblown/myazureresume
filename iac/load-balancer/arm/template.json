@@ -81,6 +81,7 @@
                       "version": "latest"
                     },
                     "osDisk": {
+                        "name": "[parameters('VM1').osDiskName]",
                         "createOption": "FromImage"
                     }
                 },
