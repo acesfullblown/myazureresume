@@ -83,7 +83,7 @@
                     "osDisk": {
                         "name": "[parameters('VM1').osDiskName]",
                         "createOption": "FromImage",
-                        "diskSizeGB": 64,
+                        "diskSizeGB": 127,
                         "managedDisk": {
                             "storageAccountType": "Standard_LRS"
                         }
