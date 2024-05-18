@@ -16,6 +16,7 @@ pool:
 steps:
 - ${{ if eq(parameters.language, 'ARM') }}:
   - task: AzureResourceManagerTemplateDeployment@3
+    displayName: 'ARM Deployment'
     inputs:
       deploymentScope: 'Resource Group'
       action: 'Create Or Update Resource Group'
