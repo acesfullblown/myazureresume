@@ -97,6 +97,68 @@
                     ]
                 }
             }
+        },
+        {
+        // VM 2
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2017-06-01",
+            "name": "[concat('nic-', parameters('VM2').name)]",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
+                ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                    "name": "ipconfig2",
+                    "properties": {
+                            "subnet": {
+                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
+                            },
+                            "privateIPAllocationMethod": "Dynamic"
+                        }
+                        }
+                    ]
+                }
+            },
+            {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2022-03-01",
+            "name": "[parameters('VM2').name]",
+            "location": "East US",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('VM2').size]"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('VM2').computerName]",
+                    "adminUsername": "[parameters('VM2').adminUsername]",
+                    "adminPassword": "[parameters('VM2').adminPassword]"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2019-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "[parameters('VM2').osDiskName]",
+                        "createOption": "FromImage",
+                        "diskSizeGB": 127,
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        }
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('VM2').name))]"
+                        }
+                    ]
+                }
+            }
         }
     ]
 }
