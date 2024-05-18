@@ -79,10 +79,9 @@
                       "offer": "WindowsServer",
                       "sku": "2019-Datacenter",
                       "version": "latest"
-                    }
-                },
-                "osDisk": {
-                    "createOption": "FromImage"
+                    },
+                    "osDisk": {
+                        "createOption": "FromImage"
                 },
                 "networkProfile": {
                     "networkInterfaces": [
