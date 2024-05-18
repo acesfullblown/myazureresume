@@ -19,7 +19,7 @@
         "VM2": {
             "value": {
                 "name": "vm-dev-eastus-002",
-                "size": "B2ts v2",
+                "size": "Standard_B2ts_v2",
                 "adminUsername": "LBadmin",
                 "adminPassword": "https://kv-loadbalancer-dev-001.vault.azure.net/secrets/vm2-password/b03175a2cf2c432ea0ddce40e6fef4c2"
             }
