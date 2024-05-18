@@ -82,6 +82,7 @@
                     },
                     "osDisk": {
                         "createOption": "FromImage"
+                    }
                 },
                 "networkProfile": {
                     "networkInterfaces": [
