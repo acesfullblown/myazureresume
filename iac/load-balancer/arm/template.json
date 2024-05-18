@@ -69,7 +69,7 @@
                     "vmSize": "[parameters('VM1').size]"
                 },
                 "osProfile": {
-                    "computerName": "[parameters('VM1').name]",
+                    "computerName": "[parameters('VM1').computerName]",
                     "adminUsername": "[parameters('VM1').adminUsername]",
                     "adminPassword": "[parameters('VM1').adminPassword]"
                 },
