@@ -82,7 +82,11 @@
                     },
                     "osDisk": {
                         "name": "[parameters('VM1').osDiskName]",
-                        "createOption": "FromImage"
+                        "createOption": "FromImage",
+                        "diskSizeGB": 64,
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        }
                     }
                 },
                 "networkProfile": {
