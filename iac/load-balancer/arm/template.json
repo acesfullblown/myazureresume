@@ -46,7 +46,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2022-07-01",
             "name": "[concat('ip-', parameters('loadBalancer').name)]",
-            "location": "EastUS",
+            "location": "East US",
             "sku": {
             "name": "Standard"
             },
