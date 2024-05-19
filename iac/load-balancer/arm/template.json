@@ -207,7 +207,7 @@
             ],  
             "properties": {  
                 "status": "Enabled",  
-                "taskType": "ComputevmShutdownTask",  
+                "taskType": "ComputeVmShutdownTask",  
                 "dailyRecurrence": {  
                     "time": "00:00"  
                 },  
@@ -226,7 +226,7 @@
             ],  
             "properties": {  
                 "status": "Enabled",  
-                "taskType": "ComputevmShutdownTask",  
+                "taskType": "ComputeVmShutdownTask",  
                 "dailyRecurrence": {  
                     "time": "00:00"  
                 },  
