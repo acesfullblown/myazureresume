@@ -5,13 +5,16 @@
         "vNet": {
             "type": "object"
             },
-        "NSG": {
+        "nsg": {
             "type": "object"
             },
-        "VM1": {
+        "loadBalancer": {
             "type": "object"
             },
-        "VM2": {
+        "vm1": {
+            "type": "object"
+            },
+        "vm2": {
             "type": "object"
             }
         },
@@ -36,6 +39,19 @@
                         }
                     }
                 ]
+            }
+        },
+    // Public IP
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2022-07-01",
+            "name": "[concat('ip-', parameters('loadBalancer').name)]",
+            "location": "EastUS",
+            "sku": {
+            "name": "Standard"
+            },
+            "properties": {
+            "publicIPAllocationMethod": "Static"
             }
         },
     // NSG
