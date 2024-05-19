@@ -72,7 +72,7 @@
         },
     // Virtual Machines
         {
-        // vm 1
+        // VM 1
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
             "name": "[concat('nic-', parameters('vm1').name)]",
@@ -134,7 +134,7 @@
             }
         },
         {
-        // vm 2
+        // VM 2
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
             "name": "[concat('nic-', parameters('vm2').name)]",
@@ -195,7 +195,7 @@
                 }
             }
         },
-        // Auto-Shutdown vm 1
+        // Auto-Shutdown VM 1
         {  
             "name": "[concat('shutdown-computevm-', parameters('vm1').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
@@ -214,7 +214,7 @@
                 "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm1').name)]"
             }  
         },
-        // Auto-Shutdown vm 2
+        // Auto-Shutdown VM 2
         {  
             "name": "[concat('shutdown-computevm-', parameters('vm2').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
