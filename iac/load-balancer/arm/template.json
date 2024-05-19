@@ -72,10 +72,10 @@
         },
     // Virtual Machines
         {
-        // VM 1
+        // vm 1
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
-            "name": "[concat('nic-', parameters('VM1').name)]",
+            "name": "[concat('nic-', parameters('vm1').name)]",
             "location": "East US",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
@@ -97,16 +97,16 @@
             {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2022-03-01",
-            "name": "[parameters('VM1').name]",
+            "name": "[parameters('vm1').name]",
             "location": "East US",
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "[parameters('VM1').size]"
+                    "vmSize": "[parameters('vm1').size]"
                 },
                 "osProfile": {
-                    "computerName": "[parameters('VM1').computerName]",
-                    "adminUsername": "[parameters('VM1').adminUsername]",
-                    "adminPassword": "[parameters('VM1').adminPassword]"
+                    "computerName": "[parameters('vm1').computerName]",
+                    "adminUsername": "[parameters('vm1').adminUsername]",
+                    "adminPassword": "[parameters('vm1').adminPassword]"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -116,7 +116,7 @@
                       "version": "latest"
                     },
                     "osDisk": {
-                        "name": "[parameters('VM1').osDiskName]",
+                        "name": "[parameters('vm1').osDiskName]",
                         "createOption": "FromImage",
                         "diskSizeGB": 127,
                         "managedDisk": {
@@ -127,17 +127,17 @@
                 "networkProfile": {
                     "networkInterfaces": [
                       {
-                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('VM1').name))]"
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('vm1').name))]"
                       }
                     ]
                 }
             }
         },
         {
-        // VM 2
+        // vm 2
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
-            "name": "[concat('nic-', parameters('VM2').name)]",
+            "name": "[concat('nic-', parameters('vm2').name)]",
             "location": "East US",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
@@ -159,16 +159,16 @@
             {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2022-03-01",
-            "name": "[parameters('VM2').name]",
+            "name": "[parameters('vm2').name]",
             "location": "East US",
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "[parameters('VM2').size]"
+                    "vmSize": "[parameters('vm2').size]"
                 },
                 "osProfile": {
-                    "computerName": "[parameters('VM2').computerName]",
-                    "adminUsername": "[parameters('VM2').adminUsername]",
-                    "adminPassword": "[parameters('VM2').adminPassword]"
+                    "computerName": "[parameters('vm2').computerName]",
+                    "adminUsername": "[parameters('vm2').adminUsername]",
+                    "adminPassword": "[parameters('vm2').adminPassword]"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -178,7 +178,7 @@
                         "version": "latest"
                     },
                     "osDisk": {
-                        "name": "[parameters('VM2').osDiskName]",
+                        "name": "[parameters('vm2').osDiskName]",
                         "createOption": "FromImage",
                         "diskSizeGB": 127,
                         "managedDisk": {
@@ -189,48 +189,48 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('VM2').name))]"
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('vm2').name))]"
                         }
                     ]
                 }
             }
         },
-        // Auto-Shutdown VM 1
+        // Auto-Shutdown vm 1
         {  
-            "name": "[concat('shutdown-computevm-', parameters('VM1').name)]",  
+            "name": "[concat('shutdown-computevm-', parameters('vm1').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
             "apiVersion": "2017-04-26-preview",  
             "location": "East US",  
             "dependsOn": [  
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('VM1').name)]"  
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('vm1').name)]"  
             ],  
             "properties": {  
                 "status": "Enabled",  
-                "taskType": "ComputeVmShutdownTask",  
+                "taskType": "ComputevmShutdownTask",  
                 "dailyRecurrence": {  
                     "time": "00:00"  
                 },  
                 "timeZoneId": "Eastern Standard Time",  
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM1').name)]"
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm1').name)]"
             }  
         },
-        // Auto-Shutdown VM 2
+        // Auto-Shutdown vm 2
         {  
-            "name": "[concat('shutdown-computevm-', parameters('VM2').name)]",  
+            "name": "[concat('shutdown-computevm-', parameters('vm2').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
             "apiVersion": "2017-04-26-preview",  
             "location": "East US",  
             "dependsOn": [  
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('VM2').name)]"  
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('vm2').name)]"  
             ],  
             "properties": {  
                 "status": "Enabled",  
-                "taskType": "ComputeVmShutdownTask",  
+                "taskType": "ComputevmShutdownTask",  
                 "dailyRecurrence": {  
                     "time": "00:00"  
                 },  
                 "timeZoneId": "Eastern Standard Time",  
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM2').name)]"
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm2').name)]"
             }  
         }
     ]
