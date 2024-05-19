@@ -165,7 +165,7 @@
             "name": "[concat('shutdown-computevm-', parameters('VM1').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
             "apiVersion": "2017-04-26-preview",  
-            "location": "[parameters('location')]",  
+            "location": "East US",  
             "dependsOn": [  
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('VM1').name)]"  
             ],  
@@ -184,7 +184,7 @@
             "name": "[concat('shutdown-computevm-', parameters('VM2').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
             "apiVersion": "2017-04-26-preview",  
-            "location": "[parameters('location')]",  
+            "location": "East US",  
             "dependsOn": [  
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('VM2').name)]"  
             ],  
