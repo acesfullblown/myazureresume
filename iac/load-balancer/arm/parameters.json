@@ -8,6 +8,11 @@
                 "addressPrefixes": "10.0.0.0/24"
             }            
         },
+        "NSG": {
+            "value": {
+                "name": "nsg-dev-eastus-001"
+            }            
+        },
         "VM1": {
             "value": {
                 "name": "vm-dev-eastus-001",

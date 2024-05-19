@@ -5,6 +5,9 @@
         "vNet": {
             "type": "object"
             },
+        "NSG": {
+            "type": "object"
+            },
         "VM1": {
             "type": "object"
             },
@@ -34,6 +37,21 @@
                     }
                 ]
             }
+        },
+    // NSG
+        {
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2023-11-01",
+            "name": "[parameters('NSG').name]",
+            // "properties": {
+            //     "securityRules": [
+            //         {
+            //         "destinationAddressPrefix": "",
+            //         "destinationAddressPrefix": "",
+            //         "priority": "100"
+            //         }
+            //     ]
+            // }
         },
     // Virtual Machines
         {
