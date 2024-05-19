@@ -173,7 +173,7 @@
                 "status": "Enabled",  
                 "taskType": "ComputeVmShutdownTask",  
                 "dailyRecurrence": {  
-                    "time": "2399"  
+                    "time": "00:00"  
                 },  
                 "timeZoneId": "Eastern Standard Time",  
                 "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM1').name)]"
@@ -192,7 +192,7 @@
                 "status": "Enabled",  
                 "taskType": "ComputeVmShutdownTask",  
                 "dailyRecurrence": {  
-                    "time": "2399"  
+                    "time": "00:00"  
                 },  
                 "timeZoneId": "Eastern Standard Time",  
                 "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM2').name)]"
