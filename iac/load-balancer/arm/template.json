@@ -67,7 +67,7 @@
             "name": "Standard"
             },
             "properties": {
-                "publicIPAllocationMethod": "Dynamic",
+                "publicIPAllocationMethod": "Dynamic"
                 // "publicIpPrefixes": [
                 //     {
                 //       "id": "string"
