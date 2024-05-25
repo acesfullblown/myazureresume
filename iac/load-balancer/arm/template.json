@@ -64,7 +64,7 @@
             "name": "[concat('ip-', parameters('natGateway').name)]",
             "location": "East US",
             "sku": {
-            "name": "Standard"
+            "name": "Basic"
             },
             "properties": {
                 "publicIPAllocationMethod": "Dynamic"
