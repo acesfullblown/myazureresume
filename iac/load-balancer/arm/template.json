@@ -11,6 +11,9 @@
         "loadBalancer": {
             "type": "object"
             },
+        "natGateway": {
+            "type": "object"
+            },
         "vm1": {
             "type": "object"
             },
@@ -41,7 +44,7 @@
                 ]
             }
         },
-    // Public IP
+    // Load Balancer Public IP
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2022-07-01",
@@ -51,7 +54,24 @@
             "name": "Standard"
             },
             "properties": {
-            "publicIPAllocationMethod": "Static"
+                "publicIPAllocationMethod": "Static"
+            }
+        },
+    // NAT Gateway Public IP
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2022-07-01",
+            "name": "[concat('ip-', parameters('natGateway').name)]",
+            "location": "East US",
+            "sku": {
+            "name": "Standard"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic",
+                // "publicIpPrefixes": [
+                //     {
+                //       "id": "string"
+                //     }
             }
         },
     // NSG

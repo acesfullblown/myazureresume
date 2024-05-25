@@ -18,6 +18,11 @@
                 "name": "lb-dev-eastus-001"
             }            
         },
+        "natGateway": {
+            "value": {
+                "name": "ng-dev-eastus-001"
+            }            
+        },
         "vm1": {
             "value": {
                 "name": "vm-dev-eastus-001",
