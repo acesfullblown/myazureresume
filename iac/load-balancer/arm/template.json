@@ -44,8 +44,32 @@
                 ]
             }
         },
-    // Load Balancer Public IP
+    // Load Balancer
         {
+            "type": "Microsoft.Network/loadBalancers",
+            "apiVersion": "2023-09-01",
+            "name": "[parameters('loadBalancer').name]",
+            "location": "East US",
+            "sku": {
+                "Name":"Basic"
+            },
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                    "name": "LoadBalancerFrontEnd",
+                    "properties": {
+                        "subnet": {
+                            "id": "[concat(parameters('vNet').name, '/subnets/default')"
+                        },
+                        "privateIPAddress": "[concat('ip-', parameters('loadBalancer').name)]"
+                        }
+                    }
+                ]
+            }
+
+        },
+        {
+            // Load Balancer Public IP
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2022-07-01",
             "name": "[concat('ip-', parameters('loadBalancer').name)]",
@@ -57,23 +81,28 @@
                 "publicIPAllocationMethod": "Static"
             }
         },
-    // NAT Gateway Public IP
-        {
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2022-07-01",
-            "name": "[concat('ip-', parameters('natGateway').name)]",
-            "location": "East US",
-            "sku": {
-            "name": "Basic"
-            },
-            "properties": {
-                "publicIPAllocationMethod": "Dynamic"
-                // "publicIpPrefixes": [
-                //     {
-                //       "id": "string"
-                //     }
-            }
+
+    // NAT Gateway
+    // {
+        
+    // },
+    {
+        // NAT Gateway Public IP
+        "type": "Microsoft.Network/publicIPAddresses",
+        "apiVersion": "2022-07-01",
+        "name": "[concat('ip-', parameters('natGateway').name)]",
+        "location": "East US",
+        "sku": {
+        "name": "Basic"
         },
+        "properties": {
+            "publicIPAllocationMethod": "Dynamic"
+            // "publicIpPrefixes": [
+            //     {
+            //       "id": "string"
+            //     }
+        }
+    },
     // NSG
         {
             "type": "Microsoft.Network/networkSecurityGroups",
@@ -92,7 +121,7 @@
         },
     // Virtual Machines
         {
-        // VM 1
+            // VM 1
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
             "name": "[concat('nic-', parameters('vm1').name)]",
@@ -153,8 +182,27 @@
                 }
             }
         },
+        {  
+            // Auto-Shutdown VM 1
+            "name": "[concat('shutdown-computevm-', parameters('vm1').name)]",  
+            "type": "Microsoft.DevTestLab/schedules",  
+            "apiVersion": "2017-04-26-preview",  
+            "location": "East US",  
+            "dependsOn": [  
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('vm1').name)]"  
+            ],  
+            "properties": {  
+                "status": "Enabled",  
+                "taskType": "ComputeVmShutdownTask",  
+                "dailyRecurrence": {  
+                    "time": "00:00"  
+                },  
+                "timeZoneId": "Eastern Standard Time",  
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm1').name)]"
+            }  
+        },
         {
-        // VM 2
+            // VM 2
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
             "name": "[concat('nic-', parameters('vm2').name)]",
@@ -215,27 +263,8 @@
                 }
             }
         },
-        // Auto-Shutdown VM 1
         {  
-            "name": "[concat('shutdown-computevm-', parameters('vm1').name)]",  
-            "type": "Microsoft.DevTestLab/schedules",  
-            "apiVersion": "2017-04-26-preview",  
-            "location": "East US",  
-            "dependsOn": [  
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('vm1').name)]"  
-            ],  
-            "properties": {  
-                "status": "Enabled",  
-                "taskType": "ComputeVmShutdownTask",  
-                "dailyRecurrence": {  
-                    "time": "00:00"  
-                },  
-                "timeZoneId": "Eastern Standard Time",  
-                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm1').name)]"
-            }  
-        },
-        // Auto-Shutdown VM 2
-        {  
+            // Auto-Shutdown VM 2
             "name": "[concat('shutdown-computevm-', parameters('vm2').name)]",  
             "type": "Microsoft.DevTestLab/schedules",  
             "apiVersion": "2017-04-26-preview",  
