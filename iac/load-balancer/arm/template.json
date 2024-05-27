@@ -51,7 +51,7 @@
             "name": "[parameters('loadBalancer').name]",
             "location": "East US",
             "sku": {
-                "Name":"Basic"
+                "Name":"Standard"
             },
             "properties": {
                 "frontendIPConfigurations": [
