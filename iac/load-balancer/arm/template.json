@@ -51,7 +51,7 @@
             "name": "[parameters('loadBalancer').name]",
             "location": "East US",
             "sku": {
-                "Name":"Standard"
+                "name":"Standard"
             },
             "properties": {
                 "frontendIPConfigurations": [
@@ -64,9 +64,68 @@
                         "privateIPAddress": "[concat('ip-', parameters('loadBalancer').name)]"
                         }
                     }
-                ]
+                ],
+                "backendAddressPools": [
+                    {
+                    "name": "BackendPool",
+                    "properties": {
+                        "loadBalancerBackendAddresses": [
+                            {
+                            "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-002ipconfig2",
+                            "properties": {}
+                            },
+                            {
+                            "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-001ipconfig1",
+                            "properties": {}
+                            }
+                        ]
+                    }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "LoadBalancingRule",
+                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/loadBalancingRules/LoadBalancingRule'))]",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/frontendIPConfigurations/LoadBalancerFrontEnd'))]"
+                            },
+                            "frontendPort": 80,
+                            "backendPort": 80,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "disableOutboundSnat": true
+                            // "backendAddressPool": {
+                            //     "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
+                            // },
+                            // "backendAddressPools": [
+                            //     {
+                            //         "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
+                            //     }
+                            // ],
+                            // "probe": {
+                            //     "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/probes/HealthProbe'))]"
+                            // }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "HealthProbe",
+                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/probes/HealthProbe'))]",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "port": 80,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 1,
+                            "probeThreshold": 1
+                        }
+                    }
+                ]    
             }
-
         },
         {
             // Load Balancer Public IP
@@ -75,7 +134,7 @@
             "name": "[concat('ip-', parameters('loadBalancer').name)]",
             "location": "East US",
             "sku": {
-            "name": "Standard"
+                "name": "Standard"
             },
             "properties": {
                 "publicIPAllocationMethod": "Static"
