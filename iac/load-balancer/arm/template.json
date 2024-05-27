@@ -59,7 +59,7 @@
                     "name": "LoadBalancerFrontEnd",
                     "properties": {
                         "subnet": {
-                            "id": "[concat(parameters('vNet').name, '/subnets/default')"
+                            "name": "[concat(parameters('vNet').name, '/subnets/default')"
                         },
                         "privateIPAddress": "[concat('ip-', parameters('loadBalancer').name)]"
                         }
