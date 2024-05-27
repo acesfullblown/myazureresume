@@ -59,7 +59,7 @@
                     "name": "LoadBalancerFrontEnd",
                     "properties": {
                         "subnet": {
-                            "name": "[concat(parameters('vNet').name, '/subnets/default')"
+                            "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
                         },
                         "privateIPAddress": "[concat('ip-', parameters('loadBalancer').name)]"
                         }
