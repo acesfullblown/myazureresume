@@ -97,18 +97,18 @@
                             "protocol": "Tcp",
                             "enableTcpReset": false,
                             "loadDistribution": "Default",
-                            "disableOutboundSnat": true
-                            // "backendAddressPool": {
-                            //     "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
-                            // },
-                            // "backendAddressPools": [
-                            //     {
-                            //         "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
-                            //     }
-                            // ],
-                            // "probe": {
-                            //     "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/probes/HealthProbe'))]"
-                            // }
+                            "disableOutboundSnat": true,
+                            "backendAddressPool": {
+                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
+                            },
+                            "backendAddressPools": [
+                                {
+                                    "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
+                                }
+                            ],
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/probes/HealthProbe'))]"
+                            }
                         }
                     }
                 ],
