@@ -85,10 +85,10 @@
                 "loadBalancingRules": [
                     {
                         "name": "LoadBalancingRule",
-                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/loadBalancingRules/LoadBalancingRule'))]",
+                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/loadBalancingRules/LoadBalancingRule')]",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/frontendIPConfigurations/LoadBalancerFrontEnd'))]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
                             },
                             "frontendPort": 80,
                             "backendPort": 80,
@@ -107,7 +107,7 @@
                                 }
                             ],
                             "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/probes/HealthProbe'))]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]"
                             }
                         }
                     }
@@ -115,7 +115,7 @@
                 "probes": [
                     {
                         "name": "HealthProbe",
-                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/probes/HealthProbe'))]",
+                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]",
                         "properties": {
                             "protocol": "Tcp",
                             "port": 80,
