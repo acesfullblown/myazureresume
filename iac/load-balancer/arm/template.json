@@ -62,7 +62,7 @@
                             "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
                         },
                         "publicIPAddress": {
-                            "id": "[resourceId('Microsoft.Network/publicIPAddresses, 'ip-', parameters('loadBalancer').name)]"
+                            "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('ip-', parameters('loadBalancer').name))]"
                         }
                     }
                 }
