@@ -61,9 +61,11 @@
                         "subnet": {
                             "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
                         },
-                        "publicIPAddress": "[concat('ip-', parameters('loadBalancer').name)]"
+                        "publicIPAddress": {
+                            "id": "[resourceId('Microsoft.Network/publicIPAddresses, 'ip-', parameters('loadBalancer').name)]"
                         }
                     }
+                }
                 ],
                 "backendAddressPools": [
                     {
