@@ -72,7 +72,7 @@
                     {
                         "name": "BackendPool",
                         "properties": {
-                            "backendAddresses": [
+                            "loadBalancerBackendAddresses": [
                                 {
                                 "name": "backendAddress1",
                                 "ipAddress": "[parameters('vm1').ipAddress]"
@@ -88,7 +88,6 @@
                 "loadBalancingRules": [
                     {
                     "name": "LoadBalancingRule",
-                    // "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/loadBalancingRules/LoadBalancingRule')]",
                     "properties": {
                         "frontendIPConfiguration": {
                             "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
@@ -137,16 +136,6 @@
                 "publicIPAllocationMethod": "Static"
             }
         },
-    //     {
-    //         // Load Balancer Backend Pool
-    //         "type": "Microsoft.Network/loadBalancers/backendAddressPools",
-    //         "apiVersion": "2020-05-01",
-    //         "name": "[concat(variables('loadBalancer').name, '/', 'BackendPool')]",
-    //         "location": "East US",
-    //         "properties": {
-
-    //         }
-    // },
     // NAT Gateway
     {
         // NAT Gateway Public IP
