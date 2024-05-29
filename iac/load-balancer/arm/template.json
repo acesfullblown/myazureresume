@@ -110,7 +110,7 @@
                             //     }
                             {
                                 "name": "backendAddress1",
-                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))).ipConfigurations.properties.privateIPAddress]"
+                                "ipAddress": "[parameters(vm1).ipAddress]"
                               },
                               {
                                 "name": "backendAddress2",
