@@ -114,7 +114,7 @@
                               },
                               {
                                 "name": "backendAddress2",
-                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name))).ipConfigurations.properties.privateIPAddress]"
+                                "ipAddress": "[parameters('vm2').ipAddress]"
                               }
                             ],
                             "probe": {
