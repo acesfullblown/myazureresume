@@ -68,23 +68,23 @@
                     }
                 }
                 ],
-                "backendAddressPools": [
-                    {
-                    "name": "BackendPool",
-                    "properties": {
-                        "loadBalancerBackendAddresses": [
-                            {
-                            "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-002ipconfig2",
-                            "properties": {}
-                            },
-                            {
-                            "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-001ipconfig1",
-                            "properties": {}
-                            }
-                        ]
-                    }
-                    }
-                ],
+                // "backendAddressPools": [
+                //     {
+                //     "name": "BackendPool",
+                //     "properties": {
+                //         "loadBalancerBackendAddresses": [
+                //             {
+                //             "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-002ipconfig2",
+                //             "properties": {}
+                //             },
+                //             {
+                //             "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-001ipconfig1",
+                //             "properties": {}
+                //             }
+                //         ]
+                //     }
+                //     }
+                // ],
                 "loadBalancingRules": [
                     {
                         "name": "LoadBalancingRule",
