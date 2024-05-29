@@ -72,7 +72,7 @@
                     {
                         "name": "BackendPool",
                         "properties": {
-                            "loadBalancerBackendAddresses": [
+                            "loadBalancerBackendAddress": [
                                 {
                                     "name": "backendAddress1",
                                     "ipAddress": "[parameters('vm1').ipAddress]"
