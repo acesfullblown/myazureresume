@@ -139,31 +139,31 @@
                 "publicIPAllocationMethod": "Static"
             }
         },
-        {
-            // Load Balancer Backend Pool
-            "type": "Microsoft.Network/loadBalancers/backendAddressPools",
-            "apiVersion": "2020-05-01",
-            "name": "[concat(variables('loadBalancer').name, '/', 'BackendPool')]",
-            "location": "East US",
-            "properties": {
-                "copy": [
-            {
-                "name": "loadBalancerBackendAddresses",
-                "count": "[length(variables('nicIpAddresses'))]",
-                "input": {
-                    "name": "[concat('address', copyIndex('loadBalancerBackendAddresses'))]",
-                    "properties": {
+        // {
+        //     // Load Balancer Backend Pool
+        //     "type": "Microsoft.Network/loadBalancers/backendAddressPools",
+        //     "apiVersion": "2020-05-01",
+        //     "name": "[concat(variables('loadBalancer').name, '/', 'BackendPool')]",
+        //     "location": "East US",
+        //     "properties": {
+        //         "copy": [
+        //     {
+        //         "name": "loadBalancerBackendAddresses",
+        //         "count": "[length(variables('nicIpAddresses'))]",
+        //         "input": {
+        //             "name": "[concat('address', copyIndex('loadBalancerBackendAddresses'))]",
+        //             "properties": {
                         
-                            "virtualNetwork": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNet').name)]"
-                            },
-                            "ipAddress": "[variables('nicIpAddresses')[copyIndex('loadBalancerBackendAddresses')]]"
-                    }
-                }
-            }
-            ]
-        }
-        },
+        //                     "virtualNetwork": {
+        //                         "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNet').name)]"
+        //                     },
+        //                     "ipAddress": "[variables('nicIpAddresses')[copyIndex('loadBalancerBackendAddresses')]]"
+        //             }
+        //         }
+        //     }
+        //     ]
+        // }
+        // },
 
     // NAT Gateway
     // {
