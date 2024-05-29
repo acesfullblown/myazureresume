@@ -94,7 +94,7 @@
                             "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
                         },
                         "backendAddressPool": {
-                            "id": "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/backendAddressPools/BackendPool')]"
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/backendAddressPools/BackendPool')]"
                         },
                         "frontendPort": 80,
                         "backendPort": 80,
