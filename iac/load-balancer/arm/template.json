@@ -68,60 +68,46 @@
                     }
                 }
                 ],
-                // "backendAddressPools": [
-                //     {
-                //     "name": "BackendPool",
-                //     "properties": {
-                //         "loadBalancerBackendAddresses": [
-                //             {
-                //             "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-002ipconfig2",
-                //             "properties": {}
-                //             },
-                //             {
-                //             "name": "rg-loadbalancer-dev-001_nic-vm-dev-eastus-001ipconfig1",
-                //             "properties": {}
-                //             }
-                //         ]
-                //     }
-                //     }
-                // ],
-                "loadBalancingRules": [
+                "backendAddressPools": [
                     {
-                        "name": "LoadBalancingRule",
-                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/loadBalancingRules/LoadBalancingRule')]",
+                        "name": "BackendPool",
                         "properties": {
-                            "frontendIPConfiguration": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
-                            },
-                            "frontendPort": 80,
-                            "backendPort": 80,
-                            "enableFloatingIP": false,
-                            "idleTimeoutInMinutes": 4,
-                            "protocol": "Tcp",
-                            "enableTcpReset": false,
-                            "loadDistribution": "Default",
-                            "disableOutboundSnat": true,
-                            "backendAddressPool": {
-                                "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
-                            },
-                            "backendAddressPools": [
-                            //     {
-                            //         "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
-                            //     }
-                            {
+                            "backendAddresses": [
+                                {
                                 "name": "backendAddress1",
                                 "ipAddress": "[parameters('vm1').ipAddress]"
-                              },
-                              {
+                                },
+                                {
                                 "name": "backendAddress2",
                                 "ipAddress": "[parameters('vm2').ipAddress]"
-                              }
-                            ],
-                            "probe": {
-                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]"
-                            }
+                                }
+                            ]
                         }
                     }
+                ],
+                "loadBalancingRules": [
+                    {
+                    "name": "LoadBalancingRule",
+                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/loadBalancingRules/LoadBalancingRule')]",
+                    "properties": {
+                        "frontendIPConfiguration": {
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                        },
+                        "frontendPort": 80,
+                        "backendPort": 80,
+                        "enableFloatingIP": false,
+                        "idleTimeoutInMinutes": 4,
+                        "protocol": "Tcp",
+                        "enableTcpReset": false,
+                        "loadDistribution": "Default",
+                        "disableOutboundSnat": true,
+                        "backendAddressPool": {
+                            "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
+                        },
+                        "probe": {
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]"
+                        }
+                    }}
                 ],
                 "probes": [
                     {
