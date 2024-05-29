@@ -88,10 +88,13 @@
                 "loadBalancingRules": [
                     {
                     "name": "LoadBalancingRule",
-                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/loadBalancingRules/LoadBalancingRule')]",
+                    // "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/loadBalancingRules/LoadBalancingRule')]",
                     "properties": {
                         "frontendIPConfiguration": {
                             "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                        },
+                        "backendAddressPool": {
+                            "id": "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name, '/backendAddressPools/BackendPool')]"
                         },
                         "frontendPort": 80,
                         "backendPort": 80,
@@ -101,9 +104,6 @@
                         "enableTcpReset": false,
                         "loadDistribution": "Default",
                         "disableOutboundSnat": true,
-                        "backendAddressPool": {
-                            "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
-                        },
                         "probe": {
                             "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]"
                         }
