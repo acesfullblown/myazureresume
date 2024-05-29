@@ -185,8 +185,8 @@
             //       "id": "string"
             //     }
         }
-    },
-    // NSG
+        },
+        // NSG
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2023-11-01",
@@ -203,8 +203,9 @@
             // }
         },
     // Virtual Machines
+        // VM 1
         {
-            // VM 1
+            // NIC VM 1
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
             "name": "[concat('nic-', parameters('vm1').name)]",
@@ -217,17 +218,18 @@
                     {
                     "name": "ipconfig1",
                     "properties": {
-                          "subnet": {
+                        "subnet": {
                             "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
-                          },
-                          "privateIPAllocationMethod": "Static",
-                          "privateIPAddress": "[parameters('vm1').ipAddress]"
+                        },
+                        "privateIPAllocationMethod": "Static",
+                        "privateIPAddress": "[parameters('vm1').ipAddress]"
                         }
-                      }
+                    }
                     ]
                 }
             },
             {
+            // Virtual Machine VM 2
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2022-03-01",
             "name": "[parameters('vm1').name]",
@@ -243,10 +245,10 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                      "publisher": "MicrosoftWindowsServer",
-                      "offer": "WindowsServer",
-                      "sku": "2019-Datacenter",
-                      "version": "latest"
+                    "publisher": "MicrosoftWindowsServer",
+                    "offer": "WindowsServer",
+                    "sku": "2019-Datacenter",
+                    "version": "latest"
                     },
                     "osDisk": {
                         "name": "[parameters('vm1').osDiskName]",
@@ -259,9 +261,9 @@
                 },
                 "networkProfile": {
                     "networkInterfaces": [
-                      {
+                    {
                         "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-',parameters('vm1').name))]"
-                      }
+                    }
                     ]
                 }
             }
@@ -285,8 +287,9 @@
                 "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm1').name)]"
             }  
         },
+        // VM 2
         {
-            // VM 2
+            // NIC VM 2
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-06-01",
             "name": "[concat('nic-', parameters('vm2').name)]",
@@ -310,6 +313,7 @@
                 }
             },
             {
+            // Virtual Machine VM 2
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2022-03-01",
             "name": "[parameters('vm2').name]",
