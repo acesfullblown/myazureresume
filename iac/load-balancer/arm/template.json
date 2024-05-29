@@ -50,6 +50,10 @@
             "apiVersion": "2023-09-01",
             "name": "[parameters('loadBalancer').name]",
             "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name))]"
+                ],
             "sku": {
                 "name":"Standard"
             },
@@ -101,9 +105,17 @@
                                 "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
                             },
                             "backendAddressPools": [
-                                {
-                                    "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
-                                }
+                            //     {
+                            //         "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('loadBalancer').name, 'BackendPool')]"
+                            //     }
+                            {
+                                "name": "backendAddress1",
+                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))).ipConfigurations[0].properties.privateIPAddress]"
+                              },
+                              {
+                                "name": "backendAddress2",
+                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))).ipConfigurations[0].properties.privateIPAddress]"
+                              }
                             ],
                             "probe": {
                                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]"
@@ -139,36 +151,17 @@
                 "publicIPAllocationMethod": "Static"
             }
         },
-        // {
-        //     // Load Balancer Backend Pool
-        //     "type": "Microsoft.Network/loadBalancers/backendAddressPools",
-        //     "apiVersion": "2020-05-01",
-        //     "name": "[concat(variables('loadBalancer').name, '/', 'BackendPool')]",
-        //     "location": "East US",
-        //     "properties": {
-        //         "copy": [
-        //     {
-        //         "name": "loadBalancerBackendAddresses",
-        //         "count": "[length(variables('nicIpAddresses'))]",
-        //         "input": {
-        //             "name": "[concat('address', copyIndex('loadBalancerBackendAddresses'))]",
-        //             "properties": {
-                        
-        //                     "virtualNetwork": {
-        //                         "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNet').name)]"
-        //                     },
-        //                     "ipAddress": "[variables('nicIpAddresses')[copyIndex('loadBalancerBackendAddresses')]]"
-        //             }
-        //         }
-        //     }
-        //     ]
-        // }
-        // },
+    //     {
+    //         // Load Balancer Backend Pool
+    //         "type": "Microsoft.Network/loadBalancers/backendAddressPools",
+    //         "apiVersion": "2020-05-01",
+    //         "name": "[concat(variables('loadBalancer').name, '/', 'BackendPool')]",
+    //         "location": "East US",
+    //         "properties": {
 
-    // NAT Gateway
-    // {
-        
+    //         }
     // },
+    // NAT Gateway
     {
         // NAT Gateway Public IP
         "type": "Microsoft.Network/publicIPAddresses",
