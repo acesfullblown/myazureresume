@@ -110,7 +110,7 @@
                             //     }
                             {
                                 "name": "backendAddress1",
-                                "ipAddress": "[parameters(vm1).ipAddress]"
+                                "ipAddress": "[parameters('vm1').ipAddress]"
                               },
                               {
                                 "name": "backendAddress2",
