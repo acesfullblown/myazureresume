@@ -116,7 +116,7 @@
                         "name": "HealthProbe",
                         "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]",
                         "properties": {
-                            "protocol": "Tcp",
+                            "protocol": "Http",
                             "port": 80,
                             "intervalInSeconds": 5,
                             "numberOfProbes": 1,
@@ -138,6 +138,31 @@
             "properties": {
                 "publicIPAllocationMethod": "Static"
             }
+        },
+        {
+            // Load Balancer Backend Pool
+            "type": "Microsoft.Network/loadBalancers/backendAddressPools",
+            "apiVersion": "2020-05-01",
+            "name": "[concat(variables('loadBalancer').name, '/', 'BackendPool')]",
+            "location": "East US",
+            "properties": {
+                "copy": [
+            {
+                "name": "loadBalancerBackendAddresses",
+                "count": "[length(variables('nicIpAddresses'))]",
+                "input": {
+                    "name": "[concat('address', copyIndex('loadBalancerBackendAddresses'))]",
+                    "properties": {
+                        
+                            "virtualNetwork": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks', variables('vNet').name)]"
+                            },
+                            "ipAddress": "[variables('nicIpAddresses')[copyIndex('loadBalancerBackendAddresses')]]"
+                    }
+                }
+            }
+            ]
+        }
         },
 
     // NAT Gateway
@@ -195,7 +220,8 @@
                           "subnet": {
                             "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
                           },
-                          "privateIPAllocationMethod": "Dynamic"
+                          "privateIPAllocationMethod": "Static",
+                          "privateIPAddress": "[parameters('vm1').ipAddress]"
                         }
                       }
                     ]
@@ -276,7 +302,8 @@
                             "subnet": {
                             "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
                             },
-                            "privateIPAllocationMethod": "Dynamic"
+                            "privateIPAllocationMethod": "Static",
+                            "privateIPAddress": "[parameters('vm2').ipAddress]"
                             }
                         }
                     ]
