@@ -74,12 +74,12 @@
                         "properties": {
                             "loadBalancerBackendAddresses": [
                                 {
-                                "name": "backendAddress1",
-                                "ipAddress": "[parameters('vm1').ipAddress]"
+                                    "name": "backendAddress1",
+                                    "ipAddress": "[parameters('vm1').ipAddress]"
                                 },
                                 {
-                                "name": "backendAddress2",
-                                "ipAddress": "[parameters('vm2').ipAddress]"
+                                    "name": "backendAddress2",
+                                    "ipAddress": "[parameters('vm2').ipAddress]"
                                 }
                             ]
                         }
@@ -163,7 +163,6 @@
             // "properties": {
             //     "securityRules": [
             //         {
-            //         "destinationAddressPrefix": "",
             //         "destinationAddressPrefix": "",
             //         "priority": "100"
             //         }
