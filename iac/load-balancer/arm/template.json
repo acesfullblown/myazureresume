@@ -116,7 +116,7 @@
                         "name": "HealthProbe",
                         "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]",
                         "properties": {
-                            "protocol": "Http",
+                            "protocol": "Tcp",
                             "port": 80,
                             "intervalInSeconds": 5,
                             "numberOfProbes": 1,
