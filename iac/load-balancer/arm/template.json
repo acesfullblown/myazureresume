@@ -110,11 +110,11 @@
                             //     }
                             {
                                 "name": "backendAddress1",
-                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))).properties.privateIPAddress]"
+                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))).ipConfiguration.properties.privateIPAddress]"
                               },
                               {
                                 "name": "backendAddress2",
-                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name))).properties.privateIPAddress]"
+                                "ipAddress": "[reference(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name))).ipConfiguration.properties.privateIPAddress]"
                               }
                             ],
                             "probe": {
