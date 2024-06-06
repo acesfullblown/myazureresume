@@ -74,22 +74,24 @@
                         "properties": {
                             "loadBalancerBackendAddresses": [
                                 {
-                                    "name": "test",
-                                    "properties": {
-                                      "adminState": "None",
-                                      "ipAddress": "10.0.0.5",
-                                      "subnet": {
-                                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
-                                      },
-                                      "virtualNetwork": {
-                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
-                                      }
+                                  "name": "backendPool1",
+                                  "properties": {
+                                    "networkInterfaceIPConfiguration": {
+                                      "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))]"
                                     }
-                                  }
-                            ]
-                        }
-                    }
-                ],
+                                  },
+                                  "type": "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
+                                },
+                                {
+                                  "name": "backendPool2",
+                                  "properties": {
+                                    "networkInterfaceIPConfiguration": {
+                                      "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name))]"
+                                    }
+                                  },
+                                  "type": "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
+                                }
+                              ],
                 "loadBalancingRules": [
                     {
                     "name": "LoadBalancingRule",
