@@ -76,14 +76,14 @@
                                 {
                                     "name": "backendAddress1",
                                     "virtualNetwork": {
-                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
                                     },
                                     "IPAddress": "[parameters('vm1').ipAddress]"
                                 },
                                 {
                                     "name": "backendAddress2",
                                     "virtualNetwork": {
-                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]"
+                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
                                     },
                                     "IPAddress": "[parameters('vm2').ipAddress]"
                                 }
