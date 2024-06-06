@@ -91,7 +91,10 @@
                                   },
                                   "type": "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
                                 }
-                              ],
+                              ]
+                        }
+                    }
+                ],
                 "loadBalancingRules": [
                     {
                     "name": "LoadBalancingRule",
