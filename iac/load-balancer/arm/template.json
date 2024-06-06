@@ -74,18 +74,10 @@
                         "properties": {
                             "loadBalancerBackendAddresses": [
                                 {
-                                    "name": "backendAddress1",
-                                    "virtualNetwork": {
-                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
-                                    },
-                                    "IPAddress": "[parameters('vm1').ipAddress]"
+                                    "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name))]"
                                 },
                                 {
-                                    "name": "backendAddress2",
-                                    "virtualNetwork": {
-                                        "id": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vNet').name)]"
-                                    },
-                                    "IPAddress": "[parameters('vm2').ipAddress]"
+                                    "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name))]"
                                 }
                             ]
                         }
