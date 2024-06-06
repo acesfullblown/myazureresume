@@ -76,7 +76,7 @@
                                 {
                                     "name": "test",
                                     "properties": {
-                                      "adminState": "test",
+                                      "adminState": "None",
                                       "ipAddress": "10.0.0.5",
                                       "subnet": {
                                         "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vNet').name, 'default')]"
