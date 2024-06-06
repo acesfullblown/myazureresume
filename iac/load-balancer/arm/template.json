@@ -77,7 +77,7 @@
                                   "name": "backendPool1",
                                   "properties": {
                                     "networkInterfaceIPConfiguration": {
-                                      "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', 'nic-', parameters('vm1').name), '/ipConfigurations/ipconfig1')]"
+                                      "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', 'nic-', parameters('vm1').name, '/ipConfigurations/ipconfig1')]"
                                     }
                                   },
                                   "type": "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
@@ -86,7 +86,7 @@
                                   "name": "backendPool2",
                                   "properties": {
                                     "networkInterfaceIPConfiguration": {
-                                      "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', 'nic-', parameters('vm2').name), '/ipConfigurations/ipconfig2')]"
+                                      "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', 'nic-', parameters('vm2').name, '/ipConfigurations/ipconfig2')]"
                                     }
                                   },
                                   "type": "Microsoft.Network/loadBalancers/backendAddressPools/loadBalancerBackendAddresses"
