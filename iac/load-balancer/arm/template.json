@@ -95,6 +95,14 @@
                         }
                     }
                 ],
+                "backendIPConfigurations": [
+                    {
+                      "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name)), '/ipConfigurations/ipconfig1')]"
+                    },
+                    {
+                      "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name)), '/ipConfigurations/ipconfig2')]"
+                    }
+                ],                
                 "loadBalancingRules": [
                     {
                     "name": "LoadBalancingRule",
