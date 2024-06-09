@@ -205,12 +205,12 @@
             "idleTimeoutInMinutes": 4,
             "publicIpAddresses": [
             {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('natGateway').name))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('natGateway').name)]"
             }
             ]
         },
         "dependsOn": [
-            "[resourceId('Microsoft.Network/publicIPAddresses', parameters('natGateway').name))]"
+            "[resourceId('Microsoft.Network/publicIPAddresses', parameters('natGateway').name)]"
         ]
           },
     // Virtual Machines
