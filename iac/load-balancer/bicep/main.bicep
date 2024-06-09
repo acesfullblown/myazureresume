@@ -1,3 +1,4 @@
+// vNet
 resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: 'vnet-dev-eastus-001'
   location: 'East US'
