@@ -41,7 +41,7 @@
                             "addressPrefix": "[parameters('vNet').addressPrefixes]",
                             "natGateway": {
                                 "id": "[resourceId('Microsoft.Network/natGateways', parameters('natgatewayname'))]"
-                              },
+                              }
                         }
                     }
                 ]
