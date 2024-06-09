@@ -28,3 +28,18 @@ steps:
       csmFile: 'iac/load-balancer/arm/template.json'
       csmParametersFile: 'iac/load-balancer/arm/parameters.json'
       deploymentMode: 'Incremental'
+
+- ${{ if eq(parameters.language, 'Bicep') }}:
+  - task: AzureResourceManagerTemplateDeployment@3
+    displayName: 'Bicep Deployment'
+    inputs:
+      deploymentScope: 'Resource Group'
+      action: 'Create Or Update Resource Group'
+      azureResourceManagerConnection: 'Mentorship(df95927c-f1ac-4464-84ac-f8982407cd53)'
+      subscriptionId: 'df95927c-f1ac-4464-84ac-f8982407cd53'
+      resourceGroupName: 'rg-loadbalancer-dev-001'
+      location: 'East US'
+      templateLocation: 'Linked artifact'
+      csmFile: 'iac/load-balancer/bicep/main.bicep'
+      csmParametersFile: 'iac/load-balancer/bicep/main.bicepparam'
+      deploymentMode: 'Incremental'
