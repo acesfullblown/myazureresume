@@ -162,31 +162,57 @@
         "name": "[concat('ip-', parameters('natGateway').name)]",
         "location": "East US",
         "sku": {
-        "name": "Basic"
+        "name": "Standard"
         },
         "properties": {
-            "publicIPAllocationMethod": "Dynamic"
-            // "publicIpPrefixes": [
-            //     {
-            //       "id": "string"
-            //     }
+            "publicIPAllocationMethod": "Static"
         }
         },
-        // NSG
         {
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2023-11-01",
-            "name": "[parameters('NSG').name]",
-            "location": "East US"
-            // "properties": {
-            //     "securityRules": [
-            //         {
-            //         "destinationAddressPrefix": "",
-            //         "priority": "100"
-            //         }
-            //     ]
-            // }
+        // NSG
+        "type": "Microsoft.Network/networkSecurityGroups",
+        "apiVersion": "2023-11-01",
+        "name": "[parameters('NSG').name]",
+        "location": "East US",
+        "properties": {
+            "securityRules": [
+                {
+                "name": "RDP",
+                "properties": {
+                    "protocol": "Tcp",
+                    "sourcePortRange": "*",
+                    "destinationPortRange": "3389",
+                    "sourceAddressPrefix": "*",
+                    "destinationAddressPrefix": "*",
+                    "access": "Allow",
+                    "priority": 300,
+                    "direction": "Inbound"
+                }
+                }
+            ]
+            }
         },
+        {
+        // NAT Gateway
+        "type": "Microsoft.Network/natGateways",
+        "apiVersion": "2021-05-01",
+        "name": "[parameters('natGateway').name]",
+        "location": "East US",
+        "sku": {
+            "name": "Standard"
+        },
+        "properties": {
+            "idleTimeoutInMinutes": 4,
+            "publicIpAddresses": [
+            {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('natGateway').name))]"
+            }
+            ]
+        },
+        "dependsOn": [
+            "[resourceId('Microsoft.Network/publicIPAddresses', parameters('natGateway').name))]"
+        ]
+          },
     // Virtual Machines
         // VM 1
         {
