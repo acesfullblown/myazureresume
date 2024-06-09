@@ -40,14 +40,14 @@
                         "properties": {
                             "addressPrefix": "[parameters('vNet').addressPrefixes]",
                             "natGateway": {
-                                "id": "[resourceId('Microsoft.Network/natGateways', parameters('natgatewayname'))]"
+                                "id": "[resourceId('Microsoft.Network/natGateways', parameters('natGateway').name)]"
                               }
                         }
                     }
                 ]
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/natGateways', parameters('natgatewayname'))]"
+                "[resourceId('Microsoft.Network/natGateways', parameters('natGateway').name)]"
             ]
         },
     // Load Balancer
