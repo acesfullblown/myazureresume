@@ -38,11 +38,17 @@
                     {
                         "name": "default",
                         "properties": {
-                            "addressPrefix": "[parameters('vNet').addressPrefixes]"
+                            "addressPrefix": "[parameters('vNet').addressPrefixes]",
+                            "natGateway": {
+                                "id": "[resourceId('Microsoft.Network/natGateways', parameters('natgatewayname'))]"
+                              },
                         }
                     }
                 ]
-            }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/natGateways', parameters('natgatewayname'))]"
+            ]
         },
     // Load Balancer
         {
