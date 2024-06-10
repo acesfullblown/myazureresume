@@ -138,7 +138,7 @@
                 "probes": [
                     {
                         "name": "HealthProbe",
-                        "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]",
+                        //"id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancer').name), '/probes/HealthProbe')]",
                         "properties": {
                             "protocol": "Tcp",
                             "port": 80,

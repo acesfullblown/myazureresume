@@ -112,6 +112,18 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
         }
       ]
       */
+      probes: [
+        {
+          name: 'HealthProbe'
+          properties: {
+            protocol: 'Tcp'
+            port: 80
+            intervalInSeconds: 5
+            numberOfProbes: 1
+            probeThreshold: 1
+          }
+        }
+      ]
       loadBalancingRules: [
         {
           name: 'LoadBalancingRule'
