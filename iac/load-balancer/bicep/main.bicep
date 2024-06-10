@@ -22,28 +22,52 @@ resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   }
 }
 // NAT Gateway
-resource natPublicIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
-  name: 'ng-dev-eastus-001'
+  // Public IP
+  resource natPublicIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
+    name: 'ng-dev-eastus-001'
+    location: 'East US'
+    sku: {
+      name: 'Standard'
+    }
+    properties: {
+      publicIPAllocationMethod: 'Static'
+    }
+  }
+  // Gateway
+  resource natGateway 'Microsoft.Network/natGateways@2023-11-01' = {
+    name: 'ng-dev-eastus-001'
+    location: 'East US'
+    sku: {
+      name: 'Standard'
+    }
+    properties: {
+      idleTimeoutInMinutes: 4
+      publicIpAddresses: [
+        {
+        id: natPublicIP.id
+        }
+      ]
+    }
+  }
+// NSG
+resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
+  name: 'nsg-dev-eastus-001'
   location: 'East US'
-  sku: {
-    name: 'Standard'
-  }
   properties: {
-    publicIPAllocationMethod: 'Static'
+    securityRules: [
+      {
+      name: 'RDP'
+      properties: {
+        protocol: 'Tcp'
+        sourcePortRange: '*'
+        destinationPortRange: '3389'
+        sourceAddressPrefix: '64.188.203.91'
+        destinationAddressPrefix: '*'
+        access: 'Allow'
+        priority: 300
+        direction: 'Inbound'
+        }
+      }
+    ]
   }
-}
-resource natGateway 'Microsoft.Network/natGateways@2023-11-01' = {
-  name: 'ng-dev-eastus-001'
-  location: 'East US'
-  sku: {
-    name: 'Standard'
-  }
-  properties: {
-    idleTimeoutInMinutes: 4
-    publicIpAddresses: [{
-      id: natPublicIP.id
-    }]
-  }
-
-
 }
