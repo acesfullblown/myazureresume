@@ -244,5 +244,17 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
           }
         }
       }
-
-      
+      // Auto-Shutdown
+      resource vm1AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
+        name: concat('shutdown-computevm-', vm1.name)
+        location: 'East US'
+        properties: {
+          status: 'Enabled'
+          taskType: 'ComputeVmShutdownTask'
+          dailyRecurrence: {
+            time: '00:00'
+          }
+          timeZoneId: 'Eastern Standard Time'
+          targetResourceId: vm1.id
+        }
+      }
