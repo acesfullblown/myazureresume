@@ -186,14 +186,14 @@
                 "name": "RDP",
                 "properties": {
                     "protocol": "Tcp",
-                    "sourcePortRange": "*",
+                    "sourcePortRange": "3389",
                     "destinationPortRange": "3389",
                     "sourceAddressPrefix": "64.188.203.91",
                     "destinationAddressPrefix": "*",
                     "access": "Allow",
                     "priority": 300,
                     "direction": "Inbound"
-                }
+                    }
                 }
             ]
             }

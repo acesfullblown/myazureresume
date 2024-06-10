@@ -21,6 +21,63 @@ resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
     ]
   }
 }
+
+// NSG
+resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
+  name: 'nsg-dev-eastus-001'
+  location: 'East US'
+  properties: {
+    securityRules: [
+      {
+      name: 'RDP'
+      properties: {
+        protocol: 'Tcp'
+        sourcePortRange: '3389'
+        destinationPortRange: '3389'
+        sourceAddressPrefix: '64.188.203.91'
+        destinationAddressPrefix: '*'
+        access: 'Allow'
+        priority: 300
+        direction: 'Inbound'
+        }
+      }
+    ]
+  }
+}
+
+// Load Balancer
+  // Public IP
+  resource loadBalancerIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
+    name: 'ip-lb-dev-eastus-001'
+    location: 'East US'
+    sku: {
+      name: 'Standard'
+    }
+    properties: {
+      publicIPAllocationMethod: 'Static'
+    }
+  }
+  // Balancer
+  resource loadBalancer 'Microsoft.Network/loadBalancers@2023-11-01' = {
+    name: 'lb-dev-eastus-001'
+    location: 'East US'
+    sku: {
+      name: 'Standard'
+    }
+    properties: {
+      frontendIPConfigurations: [
+        {
+          name: 'LoadBalancerFrontEnd'
+          properties : {
+            publicIPAddress: {
+              id: loadBalancerIP.id
+            }
+          }
+        }
+      ]
+    }
+  }
+
 // NAT Gateway
   // Public IP
   resource natPublicIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
@@ -49,25 +106,3 @@ resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
       ]
     }
   }
-// NSG
-resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
-  name: 'nsg-dev-eastus-001'
-  location: 'East US'
-  properties: {
-    securityRules: [
-      {
-      name: 'RDP'
-      properties: {
-        protocol: 'Tcp'
-        sourcePortRange: '*'
-        destinationPortRange: '3389'
-        sourceAddressPrefix: '64.188.203.91'
-        destinationAddressPrefix: '*'
-        access: 'Allow'
-        priority: 300
-        direction: 'Inbound'
-        }
-      }
-    ]
-  }
-}
