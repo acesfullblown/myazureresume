@@ -23,7 +23,7 @@ resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
 }
 // NAT Gateway
 resource natPublicIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
-  name: concat('ip-', natGateway.id)
+  name: concat('ip-', natGateway.name)
   location: 'East US'
   sku: {
     name: 'Standard'
