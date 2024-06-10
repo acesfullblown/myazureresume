@@ -1,3 +1,8 @@
+@secure()
+param adminUsername string
+@secure()
+param adminPassword string
+
 // vNet
 resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: 'vnet-dev-eastus-001'
@@ -199,5 +204,43 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
               }
             }
           ]
+        }
+      }
+      // VM
+      resource vm1 'Microsoft.Compute/virtualMachines@2024-03-01' ={
+        name: 'vm-dev-eastus-001'
+        location: 'East US'
+        properties: {
+          hardwareProfile: {
+            vmSize: 'Standard_B2s'
+          }
+          osProfile: {
+            computerName: 'vm1'
+            adminUsername: adminUsername
+            adminPassword: adminPassword
+          }
+          storageProfile: {
+            imageReference: {
+              publisher: 'MicrosoftWindowsServer'
+              offer: 'WindowsServer'
+              sku: '2019-Datacenter'
+              version: 'latest'
+            }
+            osDisk: {
+              name: 'dsk-vm-dev-eastus-00'
+              createOption: 'FromImage'
+              diskSizeGB: 127
+              managedDisk: {
+                storageAccountType: 'Standard_LRS'
+              }
+            }
+          }
+          networkProfile: {
+            networkInterfaces: [
+              {
+                id: vm1Nic.id
+              }
+            ]
+          }
         }
       }
