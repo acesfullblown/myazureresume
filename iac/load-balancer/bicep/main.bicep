@@ -185,148 +185,148 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
     }
   }
 
-  // Virtual Machines
-    // VM 1
-      // NIC
-      resource vm1Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
-        name: 'nic-vm-dev-eastus-001'
-        location: 'East US'
-        properties: {
-          ipConfigurations: [
-            {
-              name: 'ipconfig1'
-              properties: {
-                subnet: {
-                  id: vNet.properties.subnets[0].id
-                }
-                privateIPAllocationMethod: 'Static'
-                privateIPAddress: '10.0.0.5'
+// Virtual Machines
+  // VM 1
+    // NIC
+    resource vm1Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
+      name: 'nic-vm-dev-eastus-001'
+      location: 'East US'
+      properties: {
+        ipConfigurations: [
+          {
+            name: 'ipconfig1'
+            properties: {
+              subnet: {
+                id: vNet.properties.subnets[0].id
               }
+              privateIPAllocationMethod: 'Static'
+              privateIPAddress: '10.0.0.5'
+            }
+          }
+        ]
+      }
+    }
+    // VM
+    resource vm1 'Microsoft.Compute/virtualMachines@2024-03-01' ={
+      name: 'vm-dev-eastus-001'
+      location: 'East US'
+      properties: {
+        hardwareProfile: {
+          vmSize: 'Standard_B2s'
+        }
+        osProfile: {
+          computerName: 'vm1'
+          adminUsername: adminUsername
+          adminPassword: adminPassword
+        }
+        storageProfile: {
+          imageReference: {
+            publisher: 'MicrosoftWindowsServer'
+            offer: 'WindowsServer'
+            sku: '2019-Datacenter'
+            version: 'latest'
+          }
+          osDisk: {
+            name: 'dsk-vm-dev-eastus-001'
+            createOption: 'FromImage'
+            diskSizeGB: 127
+            managedDisk: {
+              storageAccountType: 'Standard_LRS'
+            }
+          }
+        }
+        networkProfile: {
+          networkInterfaces: [
+            {
+              id: vm1Nic.id
             }
           ]
         }
       }
-      // VM
-      resource vm1 'Microsoft.Compute/virtualMachines@2024-03-01' ={
-        name: 'vm-dev-eastus-001'
-        location: 'East US'
-        properties: {
-          hardwareProfile: {
-            vmSize: 'Standard_B2s'
-          }
-          osProfile: {
-            computerName: 'vm1'
-            adminUsername: adminUsername
-            adminPassword: adminPassword
-          }
-          storageProfile: {
-            imageReference: {
-              publisher: 'MicrosoftWindowsServer'
-              offer: 'WindowsServer'
-              sku: '2019-Datacenter'
-              version: 'latest'
-            }
-            osDisk: {
-              name: 'dsk-vm-dev-eastus-001'
-              createOption: 'FromImage'
-              diskSizeGB: 127
-              managedDisk: {
-                storageAccountType: 'Standard_LRS'
+    }
+    // Auto-Shutdown
+    resource vm1AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
+      name: concat('shutdown-computevm-', vm1.name)
+      location: 'East US'
+      properties: {
+        status: 'Enabled'
+        taskType: 'ComputeVmShutdownTask'
+        dailyRecurrence: {
+          time: '00:00'
+        }
+        timeZoneId: 'Eastern Standard Time'
+        targetResourceId: vm1.id
+      }
+    }
+  // VM 2
+    // NIC
+    resource vm2Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
+      name: 'nic-vm-dev-eastus-002'
+      location: 'East US'
+      properties: {
+        ipConfigurations: [
+          {
+            name: 'ipconfig2'
+            properties: {
+              subnet: {
+                id: vNet.properties.subnets[0].id
               }
+              privateIPAllocationMethod: 'Static'
+              privateIPAddress: '10.0.0.6'
             }
           }
-          networkProfile: {
-            networkInterfaces: [
-              {
-                id: vm1Nic.id
-              }
-            ]
+        ]
+      }
+    }
+    // VM
+    resource vm2 'Microsoft.Compute/virtualMachines@2024-03-01' ={
+      name: 'vm-dev-eastus-002'
+      location: 'East US'
+      properties: {
+        hardwareProfile: {
+          vmSize: 'Standard_B2s'
+        }
+        osProfile: {
+          computerName: 'vm2'
+          adminUsername: adminUsername
+          adminPassword: adminPassword
+        }
+        storageProfile: {
+          imageReference: {
+            publisher: 'MicrosoftWindowsServer'
+            offer: 'WindowsServer'
+            sku: '2019-Datacenter'
+            version: 'latest'
+          }
+          osDisk: {
+            name: 'dsk-vm-dev-eastus-002'
+            createOption: 'FromImage'
+            diskSizeGB: 127
+            managedDisk: {
+              storageAccountType: 'Standard_LRS'
+            }
           }
         }
-      }
-      // Auto-Shutdown
-      resource vm1AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
-        name: concat('shutdown-computevm-', vm1.name)
-        location: 'East US'
-        properties: {
-          status: 'Enabled'
-          taskType: 'ComputeVmShutdownTask'
-          dailyRecurrence: {
-            time: '00:00'
-          }
-          timeZoneId: 'Eastern Standard Time'
-          targetResourceId: vm1.id
-        }
-      }
-    // VM 2
-      // NIC
-      resource vm2Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
-        name: 'nic-vm-dev-eastus-002'
-        location: 'East US'
-        properties: {
-          ipConfigurations: [
+        networkProfile: {
+          networkInterfaces: [
             {
-              name: 'ipconfig2'
-              properties: {
-                subnet: {
-                  id: vNet.properties.subnets[0].id
-                }
-                privateIPAllocationMethod: 'Static'
-                privateIPAddress: '10.0.0.6'
-              }
+              id: vm2Nic.id
             }
           ]
         }
       }
-      // VM
-      resource vm2 'Microsoft.Compute/virtualMachines@2024-03-01' ={
-        name: 'vm-dev-eastus-002'
-        location: 'East US'
-        properties: {
-          hardwareProfile: {
-            vmSize: 'Standard_B2s'
-          }
-          osProfile: {
-            computerName: 'vm2'
-            adminUsername: adminUsername
-            adminPassword: adminPassword
-          }
-          storageProfile: {
-            imageReference: {
-              publisher: 'MicrosoftWindowsServer'
-              offer: 'WindowsServer'
-              sku: '2019-Datacenter'
-              version: 'latest'
-            }
-            osDisk: {
-              name: 'dsk-vm-dev-eastus-002'
-              createOption: 'FromImage'
-              diskSizeGB: 127
-              managedDisk: {
-                storageAccountType: 'Standard_LRS'
-              }
-            }
-          }
-          networkProfile: {
-            networkInterfaces: [
-              {
-                id: vm2Nic.id
-              }
-            ]
-          }
+    }
+    // Auto-Shutdown
+    resource vm2AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
+      name: concat('shutdown-computevm-', vm2.name)
+      location: 'East US'
+      properties: {
+        status: 'Enabled'
+        taskType: 'ComputeVmShutdownTask'
+        dailyRecurrence: {
+          time: '00:00'
         }
+        timeZoneId: 'Eastern Standard Time'
+        targetResourceId: vm2.id
       }
-      // Auto-Shutdown
-      resource vm2AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
-        name: concat('shutdown-computevm-', vm2.name)
-        location: 'East US'
-        properties: {
-          status: 'Enabled'
-          taskType: 'ComputeVmShutdownTask'
-          dailyRecurrence: {
-            time: '00:00'
-          }
-          timeZoneId: 'Eastern Standard Time'
-          targetResourceId: vm2.id
-        }
-      }
+    }
