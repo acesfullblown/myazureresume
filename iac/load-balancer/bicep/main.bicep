@@ -227,7 +227,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
               version: 'latest'
             }
             osDisk: {
-              name: 'dsk-vm-dev-eastus-00'
+              name: 'dsk-vm-dev-eastus-001'
               createOption: 'FromImage'
               diskSizeGB: 127
               managedDisk: {
