@@ -82,6 +82,7 @@
                                 {
                                   "name": "backendPool1",
                                   "properties": {
+                                    // INVALID IN BICEP
                                     "networkInterfaceIPConfiguration": {
                                       "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name)), '/ipConfigurations/ipconfig1')]"
                                     }
@@ -91,6 +92,7 @@
                                 {
                                   "name": "backendPool2",
                                   "properties": {
+                                    // INVALID IN BICEP
                                     "networkInterfaceIPConfiguration": {
                                       "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm2').name)), '/ipConfigurations/ipconfig2')]"
                                     }
@@ -101,6 +103,7 @@
                         }
                     }
                 ],
+                // INVALID IN BICEP
                 "backendIPConfigurations": [
                     {
                       "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', concat('nic-', parameters('vm1').name)), '/ipConfigurations/ipconfig1')]"

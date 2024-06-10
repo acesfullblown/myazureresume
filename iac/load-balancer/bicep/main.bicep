@@ -75,6 +75,67 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
           }
         }
       ]
+      backendAddressPools: [
+        {
+          name: 'BackendPool'
+          properties: {
+            loadBalancerBackendAddresses: [
+              {
+              name: 'backendPool1'
+              properties: {
+                /* CANNOT GET THIS TO WORK!!
+                networkInterfaceIPConfiguration: {
+                }
+                */
+              }
+              }
+              {
+              name: 'backendPool2'
+              properties: {
+                /* CANNOT GET THIS TO WORK!!
+                networkInterfaceIPConfiguration: {
+                }
+                */
+              }
+              }
+            ]
+          }
+        }
+      ]
+      /* CANNOT GET THIS TO WORK!!
+      backendIPConfigurations: [
+        {
+          id: ''
+        }
+        {
+          id: ''
+        }
+      ]
+      */
+      loadBalancingRules: [
+        {
+          name: 'LoadBalancingRule'
+          properties: {
+            frontendIPConfiguration: {
+              id: resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', 'lb-dev-eastus-001', 'LoadBalancerFrontEnd')
+            }
+            backendAddressPool: {
+              id: resourceId('Microsoft.Network/loadBalancers/backendAddressPools', 'lb-dev-eastus-001', 'BackendPool')
+            }
+            frontendPort: 80
+            backendPort: 80
+            enableFloatingIP: false
+            idleTimeoutInMinutes: 4
+            protocol: 'Tcp'
+            enableTcpReset: false
+            loadDistribution: 'Default'
+            disableOutboundSnat: true
+            probe: {
+              id: resourceId('Microsoft.Network/loadBalancers/probes', 'lb-dev-eastus-001', 'HealthProbe')
+            }
+          }
+        }
+      ]
     }
   }
 
