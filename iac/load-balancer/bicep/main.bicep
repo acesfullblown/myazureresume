@@ -179,3 +179,25 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
       ]
     }
   }
+
+  // Virtual Machines
+    // VM 1
+      // NIC
+      resource vm1Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
+        name: 'nic-vm-dev-eastus-001'
+        location: 'East US'
+        properties: {
+          ipConfigurations: [
+            {
+              name: 'ipconfig1'
+              properties: {
+                subnet: {
+                  id: vNet.properties.subnets[0].id
+                }
+                privateIPAllocationMethod: 'Static'
+                privateIPAddress: '10.0.0.5'
+              }
+            }
+          ]
+        }
+      }
