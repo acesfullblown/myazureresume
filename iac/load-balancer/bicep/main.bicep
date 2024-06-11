@@ -141,10 +141,10 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
           name: 'LoadBalancingRule'
           properties: {
             frontendIPConfiguration: {
-              id: resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', 'lb-dev-eastus-001', 'LoadBalancerFrontEnd')
+              id: resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', loadBalancerName, 'LoadBalancerFrontEnd')
             }
             backendAddressPool: {
-              id: resourceId('Microsoft.Network/loadBalancers/backendAddressPools', 'lb-dev-eastus-001', 'BackendPool')
+              id: resourceId('Microsoft.Network/loadBalancers/backendAddressPools', loadBalancerName, 'BackendPool')
             }
             frontendPort: 80
             backendPort: 80
@@ -155,7 +155,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
             loadDistribution: 'Default'
             disableOutboundSnat: true
             probe: {
-              id: resourceId('Microsoft.Network/loadBalancers/probes', 'lb-dev-eastus-001', 'HealthProbe')
+              id: resourceId('Microsoft.Network/loadBalancers/probes', loadBalancerName, 'HealthProbe')
             }
           }
         }
