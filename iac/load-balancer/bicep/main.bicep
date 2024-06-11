@@ -1,23 +1,30 @@
+param location string
 @secure()
 param adminUsername string
 @secure()
 param adminPassword string
+param vnet object
+param nsgName string
+param loadBalancerName string
+param natGatewayName string
+param virtualMachine1 object
+param virtualMachine2 object
 
 // vNet
 resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
-  name: 'vnet-dev-eastus-001'
-  location: 'East US'
+  name: vnet.name
+  location: location
   properties: {
     addressSpace: {
       addressPrefixes: [
-        '10.0.0.0/24'
+        vnet.addressPrefixes
       ]
     }
     subnets: [
       {
         name: 'default'
         properties: {
-          addressPrefix: '10.0.0.0/24'
+          addressPrefix: vnet.AddressPrefixes
           natGateway: {
             id: natGateway.id
           }
@@ -29,8 +36,8 @@ resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
 
 // NSG
 resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
-  name: 'nsg-dev-eastus-001'
-  location: 'East US'
+  name: nsgName
+  location: location
   properties: {
     securityRules: [
       {
@@ -53,8 +60,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
 // Load Balancer
   // Public IP
   resource loadBalancerIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
-    name: 'ip-lb-dev-eastus-001'
-    location: 'East US'
+    name: 'ip-${loadBalancerName}'
+    location: location
     sku: {
       name: 'Standard'
     }
@@ -64,8 +71,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   }
   // Balancer
   resource loadBalancer 'Microsoft.Network/loadBalancers@2023-11-01' = {
-    name: 'lb-dev-eastus-001'
-    location: 'East US'
+    name: loadBalancerName
+    location: location
     sku: {
       name: 'Standard'
     }
@@ -159,8 +166,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
 // NAT Gateway
   // Public IP
   resource natPublicIP 'Microsoft.Network/publicIPAddresses@2023-11-01' = {
-    name: 'ng-dev-eastus-001'
-    location: 'East US'
+    name: 'ip-${natGatewayName}'
+    location: location
     sku: {
       name: 'Standard'
     }
@@ -170,8 +177,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   }
   // Gateway
   resource natGateway 'Microsoft.Network/natGateways@2023-11-01' = {
-    name: 'ng-dev-eastus-001'
-    location: 'East US'
+    name: natGatewayName
+    location: location
     sku: {
       name: 'Standard'
     }
@@ -189,8 +196,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   // VM 1
     // NIC
     resource vm1Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
-      name: 'nic-vm-dev-eastus-001'
-      location: 'East US'
+      name: 'nic-${virtualMachine1.name}'
+      location: location
       properties: {
         ipConfigurations: [
           {
@@ -200,7 +207,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
                 id: vNet.properties.subnets[0].id
               }
               privateIPAllocationMethod: 'Static'
-              privateIPAddress: '10.0.0.5'
+              privateIPAddress: virtualMachine1.ipAddress
             }
           }
         ]
@@ -208,14 +215,14 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
     }
     // VM
     resource vm1 'Microsoft.Compute/virtualMachines@2024-03-01' ={
-      name: 'vm-dev-eastus-001'
-      location: 'East US'
+      name: virtualMachine1.name
+      location: location
       properties: {
         hardwareProfile: {
           vmSize: 'Standard_B2s'
         }
         osProfile: {
-          computerName: 'vm1'
+          computerName: virtualMachine1.computerName
           adminUsername: adminUsername
           adminPassword: adminPassword
         }
@@ -227,7 +234,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
             version: 'latest'
           }
           osDisk: {
-            name: 'dsk-vm-dev-eastus-001'
+            name: 'dsk-${virtualMachine1.name}'
             createOption: 'FromImage'
             diskSizeGB: 127
             managedDisk: {
@@ -246,8 +253,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
     }
     // Auto-Shutdown
     resource vm1AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
-      name: concat('shutdown-computevm-', vm1.name)
-      location: 'East US'
+      name: 'shutdown-computevm-${virtualMachine1.name}'
+      location: location
       properties: {
         status: 'Enabled'
         taskType: 'ComputeVmShutdownTask'
@@ -261,8 +268,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   // VM 2
     // NIC
     resource vm2Nic 'Microsoft.Network/networkInterfaces@2023-11-01' = {
-      name: 'nic-vm-dev-eastus-002'
-      location: 'East US'
+      name: 'nic-${virtualMachine2.name}'
+      location: location
       properties: {
         ipConfigurations: [
           {
@@ -272,7 +279,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
                 id: vNet.properties.subnets[0].id
               }
               privateIPAllocationMethod: 'Static'
-              privateIPAddress: '10.0.0.6'
+              privateIPAddress: virtualMachine2.ipAddress
             }
           }
         ]
@@ -280,14 +287,14 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
     }
     // VM
     resource vm2 'Microsoft.Compute/virtualMachines@2024-03-01' ={
-      name: 'vm-dev-eastus-002'
-      location: 'East US'
+      name: virtualMachine2.name
+      location: location
       properties: {
         hardwareProfile: {
           vmSize: 'Standard_B2s'
         }
         osProfile: {
-          computerName: 'vm2'
+          computerName: virtualMachine2.computerName
           adminUsername: adminUsername
           adminPassword: adminPassword
         }
@@ -299,7 +306,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
             version: 'latest'
           }
           osDisk: {
-            name: 'dsk-vm-dev-eastus-002'
+            name: 'dsk-${virtualMachine2.name}'
             createOption: 'FromImage'
             diskSizeGB: 127
             managedDisk: {
@@ -318,8 +325,8 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
     }
     // Auto-Shutdown
     resource vm2AutoShutdown 'Microsoft.DevTestLab/schedules@2018-09-15' = {
-      name: concat('shutdown-computevm-', vm2.name)
-      location: 'East US'
+      name: 'shutdown-computevm-${virtualMachine2.name}'
+      location: location
       properties: {
         status: 'Enabled'
         taskType: 'ComputeVmShutdownTask'
