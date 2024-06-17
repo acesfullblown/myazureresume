@@ -122,6 +122,9 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
               }
             }
             ]
+            virtualNetwork: {
+              id: vNet.id
+            }
           }
         }
       ]
