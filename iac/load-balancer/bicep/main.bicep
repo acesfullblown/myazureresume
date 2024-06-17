@@ -119,9 +119,11 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
                 subnet: {
                   id: vNet.properties.subnets[0].id
                 }
+                /*
                 virtualNetwork: {
                   id: vNet.id
                 }
+                */
               }
             }
             ]
