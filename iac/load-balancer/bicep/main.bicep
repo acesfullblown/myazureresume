@@ -25,6 +25,9 @@ resource vNet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
         name: 'default'
         properties: {
           addressPrefix: vnet.AddressPrefixes
+          networkSecurityGroup: {
+            id: nsg.id
+          }
           natGateway: {
             id: natGateway.id
           }
@@ -41,10 +44,23 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
   properties: {
     securityRules: [
       {
+        name: 'HTTP'
+        properties: {
+          protocol: 'Tcp'
+          sourcePortRange: '*'
+          destinationPortRange: '80'
+          sourceAddressPrefix: '*'
+          destinationAddressPrefix: '*'
+          access: 'Allow'
+          priority: 200
+          direction: 'Inbound'
+          }
+      }
+      {
       name: 'RDP'
       properties: {
         protocol: 'Tcp'
-        sourcePortRange: '3389'
+        sourcePortRange: '*'
         destinationPortRange: '3389'
         sourceAddressPrefix: '64.188.203.91'
         destinationAddressPrefix: '*'
@@ -91,25 +107,25 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
         {
           name: 'BackendPool'
           properties: {
+            virtualNetwork: {
+              id: vnet.id
+            }
             loadBalancerBackendAddresses: [
               {
               name: 'backendPool1'
               properties: {
-                /* CANNOT GET THIS TO WORK!!
-                networkInterfaceIPConfiguration: {
+                adminState: 'None'
+                ipAddress: virtualMachine1.ipAddress
+                loadBalancerFrontendIPConfiguration: {
                 }
-                */
-              }
-              }
-              {
-              name: 'backendPool2'
-              properties: {
-                /* CANNOT GET THIS TO WORK!!
-                networkInterfaceIPConfiguration: {
+                subnet: {
+                  id: vNet.properties.subnets[0].id
                 }
-                */
+                virtualNetwork: {
+                  id: vnet.id
+                }
               }
-              }
+            }
             ]
           }
         }
