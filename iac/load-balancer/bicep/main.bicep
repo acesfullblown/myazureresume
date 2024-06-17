@@ -105,6 +105,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
       ]
       backendAddressPools: [
         {
+          //THIS DOES NOT WORK - Resource Deploys but vNet is not associated and IP is not added to backend pool config.
           name: 'BackendPool'
           properties: {
             loadBalancerBackendAddresses: [
@@ -128,16 +129,6 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
           }
         }
       ]
-      /* CANNOT GET THIS TO WORK!!
-      backendIPConfigurations: [
-        {
-          id: ''
-        }
-        {
-          id: ''
-        }
-      ]
-      */
       probes: [
         {
           name: 'HealthProbe'
