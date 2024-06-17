@@ -116,8 +116,6 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
               properties: {
                 adminState: 'None'
                 ipAddress: virtualMachine1.ipAddress
-                loadBalancerFrontendIPConfiguration: {
-                }
                 subnet: {
                   id: vNet.properties.subnets[0].id
                 }
