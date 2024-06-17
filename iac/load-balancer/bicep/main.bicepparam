@@ -2,7 +2,7 @@ using 'main.bicep'
 
 param location = 'East US'
 param adminUsername = 'LBadmin'
-param adminPassword = az.getSecret('df95927c-f1ac-4464-84ac-f8982407cd53/rg-loadbalancer-dev-001/kv-loadbalancer-dev-001/vm1-password')
+param adminPassword = az.getSecret('df95927c-f1ac-4464-84ac-f8982407cd53','rg-loadbalancer-dev-001','kv-loadbalancer-dev-001','vm1-password')
 param vnet = {
   name: 'vnet-dev-eastus-001'
   addressPrefixes: '10.0.0.0/24'
