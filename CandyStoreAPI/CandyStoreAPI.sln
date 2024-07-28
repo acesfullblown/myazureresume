@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStoreAPI", "CandyStoreAPI.csproj", "{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AB8A884-4247-401A-A3BB-0E666073884A}
+	EndGlobalSection
+EndGlobal

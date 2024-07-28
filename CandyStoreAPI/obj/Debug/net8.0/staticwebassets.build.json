@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "eKSzKgUtP9Ih5XIL0KZzqUCBAZivCurjc9JPogd2yoI=",
+  "Source": "CandyStoreAPI",
+  "BasePath": "_content/CandyStoreAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

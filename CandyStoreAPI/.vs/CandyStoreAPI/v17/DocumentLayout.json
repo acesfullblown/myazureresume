@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|c:\\users\\aces\\source\\repos\\azure\\candystoreapi\\controllers\\todoitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|solutionrelative:controllers\\todoitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|c:\\users\\aces\\source\\repos\\azure\\candystoreapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|c:\\users\\aces\\source\\repos\\azure\\candystoreapi\\models\\todoitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|solutionrelative:models\\todoitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|c:\\users\\aces\\source\\repos\\azure\\candystoreapi\\models\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|solutionrelative:models\\todocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|c:\\users\\aces\\source\\repos\\azure\\candystoreapi\\candystoreapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{44917FB6-45BE-426C-8F47-3DDE3B1F96EE}|CandyStoreAPI.csproj|solutionrelative:candystoreapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TodoItemsController.cs",
+              "DocumentMoniker": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Controllers\\TodoItemsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TodoItemsController.cs",
+              "ToolTip": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Controllers\\TodoItemsController.cs",
+              "RelativeToolTip": "Controllers\\TodoItemsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T21:33:01.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T21:04:39.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TodoContext.cs",
+              "DocumentMoniker": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Models\\TodoContext.cs",
+              "RelativeDocumentMoniker": "Models\\TodoContext.cs",
+              "ToolTip": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Models\\TodoContext.cs",
+              "RelativeToolTip": "Models\\TodoContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T21:03:23.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TodoItem.cs",
+              "DocumentMoniker": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Models\\TodoItem.cs",
+              "RelativeDocumentMoniker": "Models\\TodoItem.cs",
+              "ToolTip": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\Models\\TodoItem.cs",
+              "RelativeToolTip": "Models\\TodoItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T21:01:53.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CandyStoreAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\CandyStoreAPI.csproj",
+              "RelativeDocumentMoniker": "CandyStoreAPI.csproj",
+              "ToolTip": "C:\\Users\\Aces\\source\\repos\\azure\\CandyStoreAPI\\CandyStoreAPI.csproj",
+              "RelativeToolTip": "CandyStoreAPI.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-17T21:00:03.364Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
