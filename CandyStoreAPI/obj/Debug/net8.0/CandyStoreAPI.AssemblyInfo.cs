@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CandyStoreAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bbe7b869f92ba76256c2793cb50e37ee3a1bb87")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bbf59413f5bfa64ff11b3667fde7aac13710f93")]
 [assembly: System.Reflection.AssemblyProductAttribute("CandyStoreAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CandyStoreAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

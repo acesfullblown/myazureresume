@@ -1,6 +1,6 @@
 ﻿namespace CandyStoreAPI.Models;
 
-public class TodoItem
+public class Candy
 {
     public long Id { get; set; }
     public string? Name { get; set; }
