@@ -85,7 +85,6 @@ C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\System.Drawing.C
 C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\Users\Aces\source\repos\azure\CandyStoreAPI\bin\Debug\net8.0\ar\Humanizer.resources.dll
