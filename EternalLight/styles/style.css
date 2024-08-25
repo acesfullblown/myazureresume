@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+p {
+    font-family: 'Arial', sans-serif;
+    }
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    z-index: 1000;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.film-strip {
+    position: absolute;
+    width: 100%;
+    height: 50%; /* Set height to 50% of the container's height */
+    top: 57%; /* Center vertically */
+    transform: translateY(-50%); /* Center vertically using transform */
+    overflow: hidden;
+    z-index: -1; /* Ensure the film strip is behind the container */
+    display: flex;
+    justify-content: center;
+    opacity: 50%
+}
+
+.film-strip .images-container {
+    display: flex;
+    animation: rotateFilmstrip 20s linear infinite; /* Animation for rotating film strip */
+}
+
+.film-strip img {
+    height: 50%;
+    flex-shrink: 0; /* Prevent images from shrinking */
+}
+
+@keyframes rotateFilmstrip {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% / 40 * 5)); } /* Moves the strip by the width of 5 images */
+}
+
+.container {
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.book-cover {
+    flex: 1;
+    background-color: #ddd;
+}
+
+.book-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.description {
+    flex: 2;
+    padding-left: 30px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.description h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+.description p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.links-section {
+    width: 100%;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.links-section a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+.links-section a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
