@@ -131,3 +131,8 @@ p {
     padding: 10px 0;
     font-size: 14px;
 }
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
